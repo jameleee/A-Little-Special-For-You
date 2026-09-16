@@ -1,0 +1,864 @@
+{
+  "settings": {
+    "debug": false,
+    "startScreen": "intro",
+    "musicEnabled": true,
+    "title": "Một lá thư nhỏ — Anh gửi em",
+    "recipientName": "em",
+    "anniversaryDate": "Một ngày anh muốn nhớ",
+    "musicFadeDuration": 1500
+  },
+  "theme": {
+    "name": "kraft-scrapbook",
+    "background": "#c7a77b",
+    "paper": "#f4eee3",
+    "text": "#29241f",
+    "accent": "#6f5947"
+  },
+  "ui": {
+    "back": "Quay lại",
+    "next": "Tiếp",
+    "play": "Phát nhạc",
+    "pause": "Tạm dừng",
+    "seek": "Vị trí bài hát",
+    "revealGift": "Mở quà không cần cào",
+    "scratchProgress": "Đã cào khoảng {percent}%",
+    "audioUnavailable": "Bài hát chưa có ở đây. Mình nghe cùng nhau sau nhé.",
+    "audioDisabled": "Mình nghe nhạc cùng nhau sau nhé.",
+    "audioLoading": "Chờ bài hát một chút nhé…",
+    "audioReady": "Một bài hát anh muốn nghe cùng em.",
+    "audioPlayError": "Chưa phát được nhạc. Em thử nhấn phát lại nhé.",
+    "imageFallback": "Một kỷ niệm của mình",
+    "navigationLabel": "Lật trang thư",
+    "errorTitle": "Lá thư chưa mở được",
+    "errorBody": "Em thử tải lại trang nhé. Nếu vẫn chưa được, anh sẽ kiểm tra lại lá thư.",
+    "retry": "Thử lại"
+  },
+  "screens": [
+    {
+      "id": "intro",
+      "type": "intro",
+      "eyebrow": "GỬI EM,",
+      "title": "Anh có một chút bất ngờ cho em",
+      "subtitle": "Có vài điều anh muốn nói, mà nghĩ mãi vẫn thấy viết ra dễ hơn.",
+      "note": "Em đọc từ từ nhé.",
+      "buttons": [
+        {
+          "label": "Nhấn để mở",
+          "action": "next"
+        }
+      ],
+      "decorations": [
+        {
+          "type": "sticker",
+          "src": "assets/stickers/cat.png",
+          "position": "bottom-right",
+          "size": 96,
+          "rotation": 5
+        }
+      ],
+      "animation": {
+        "enter": "fade",
+        "duration": 650
+      },
+      "progress": false
+    },
+    {
+      "id": "envelope",
+      "type": "envelope",
+      "title": "Một lá thư dành cho em",
+      "envelopeText": "For you.",
+      "hint": "Nhấn để mở nhé",
+      "buttons": [
+        {
+          "label": "Mở phong bì",
+          "action": "next"
+        }
+      ],
+      "navigation": {
+        "showBack": false,
+        "showNext": false
+      },
+      "progress": false,
+      "decorations": [
+        {
+          "type": "doodle",
+          "text": "〰",
+          "position": "top-right",
+          "rotation": 30,
+          "size": 40
+        }
+      ],
+      "transition": {
+        "type": "paper-burn-portal",
+        "target": "letter-01",
+        "duration": 2950,
+        "zoomDuration": 900,
+        "ignitionDuration": 500,
+        "ignition": {
+          "x": 0.54,
+          "y": 0.58
+        },
+        "background": {
+          "src": "assets/images/travel-fire-card.png",
+          "width": 941,
+          "height": 1672,
+          "window": [
+            [
+              407,
+              496
+            ],
+            [
+              710,
+              588
+            ],
+            [
+              223,
+              1006
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "envelope-opening",
+      "type": "envelope-open",
+      "title": "Chào em",
+      "envelopeText": "For you.",
+      "hint": "",
+      "autoAdvance": {
+        "action": "next",
+        "delay": 1450
+      },
+      "animation": {
+        "enter": "envelope-open",
+        "duration": 450
+      },
+      "progress": false
+    },
+    {
+      "id": "letter-01",
+      "type": "letter",
+      "title": "Mình đã có nhau rồi nhỉ",
+      "paragraphs": [
+        "Nghĩ lại, anh thấy vui vì hai đứa đã gặp nhau, rồi dần trở thành một phần trong cuộc sống của nhau.",
+        "Cảm ơn em vì đã mở lòng với anh, để hai đứa có cơ hội gần nhau hơn và ở bên nhau như bây giờ."
+      ],
+      "decorations": [
+        {
+          "type": "doodle",
+          "src": "assets/stickers/leaf.png",
+          "position": "bottom-right",
+          "size": 60,
+          "rotation": -8
+        }
+      ],
+      "navigation": {
+        "showBack": true,
+        "showNext": true
+      },
+      "animation": {
+        "enter": "fade-up",
+        "duration": 450
+      },
+      "transition": {
+        "type": "page-turn",
+        "duration": 1100,
+        "forward": {
+          "origin": "bottom-right",
+          "direction": "top-left"
+        },
+        "backward": {
+          "origin": "bottom-left",
+          "direction": "top-right"
+        }
+      }
+    },
+    {
+      "id": "letter-02",
+      "type": "letter",
+      "title": "Có em, những ngày bình thường cũng vui hơn",
+      "paragraphs": [
+        "Anh thích những lúc ngồi cạnh em, nghe em kể chuyện rồi hai đứa lại bật cười vì một điều gì đó rất nhỏ. Những lúc như thế, anh chỉ muốn được ở lại thêm một chút.",
+        "Có những chuyện lúc ở cạnh nhau thấy rất bình thường, nhưng về rồi nghĩ lại anh lại thấy đáng nhớ. Chắc vì những lúc đó có em ở bên."
+      ],
+      "decorations": [
+        {
+          "type": "tape",
+          "position": "top-center",
+          "size": 100,
+          "rotation": -5
+        }
+      ],
+      "navigation": {
+        "showBack": true,
+        "showNext": true
+      },
+      "animation": {
+        "enter": "fade-up",
+        "duration": 450
+      },
+      "transition": {
+        "type": "page-turn",
+        "duration": 1100,
+        "forward": {
+          "origin": "bottom-right",
+          "direction": "top-left"
+        },
+        "backward": {
+          "origin": "bottom-left",
+          "direction": "top-right"
+        }
+      }
+    },
+    {
+      "id": "letter-03",
+      "type": "letter",
+      "title": "Anh muốn hiểu em hơn",
+      "paragraphs": [
+        "Anh muốn dần biết thêm về em, từ món em thích ăn đến những thói quen nhỏ mỗi ngày. Có những điều phải ở bên nhau lâu hơn một chút mới biết được nhỉ.",
+        "Mình cứ từ từ thong thả nhé. Anh muốn quan tâm em từ những điều nhỏ nhất."
+      ],
+      "decorations": [
+        {
+          "type": "sticker",
+          "src": "assets/stickers/cat.png",
+          "position": "bottom-right",
+          "size": 95,
+          "rotation": 3
+        }
+      ],
+      "navigation": {
+        "showBack": true,
+        "showNext": true
+      },
+      "animation": {
+        "enter": "fade-up",
+        "duration": 450
+      },
+      "transition": {
+        "type": "page-turn",
+        "duration": 1100,
+        "forward": {
+          "origin": "bottom-right",
+          "direction": "top-left"
+        },
+        "backward": {
+          "origin": "bottom-left",
+          "direction": "top-right"
+        }
+      }
+    },
+    {
+      "id": "letter-04",
+      "type": "letter",
+      "title": "Mình cứ cùng nhau nhé",
+      "paragraphs": [
+        "Anh còn muốn cùng em đi nhiều nơi, ăn thêm nhiều món ngon, rồi có thêm bao nhiêu chuyện để sau này nhắc lại.",
+        "Vì điều anh mong chờ không hẳn là mình sẽ đi đâu, mà là người đi cùng anh vẫn là em."
+      ],
+      "decorations": [
+        {
+          "type": "sticker",
+          "src": "assets/stickers/camera.png",
+          "position": "bottom-right",
+          "size": 60,
+          "rotation": 7
+        }
+      ],
+      "navigation": {
+        "showBack": true,
+        "showNext": true
+      },
+      "animation": {
+        "enter": "fade-up",
+        "duration": 450
+      },
+      "transition": {
+        "type": "page-turn",
+        "duration": 1100,
+        "forward": {
+          "origin": "bottom-right",
+          "direction": "top-left"
+        },
+        "backward": {
+          "origin": "bottom-left",
+          "direction": "top-right"
+        }
+      }
+    },
+    {
+      "id": "memory",
+      "type": "gallery",
+      "title": "Mình cũng có kha khá kỷ niệm rồi nhỉ",
+      "layout": "photo-template",
+      "template": {
+        "src": "assets/images/photo-frame-duo.jpg",
+        "alt": "Trang scrapbook với hai khung ảnh và hoa khô",
+        "width": 736,
+        "height": 1040,
+        "slots": [
+          {
+            "x": 12.771739130434783,
+            "y": 12.01923076923077,
+            "width": 51.902173913043484,
+            "height": 39.80769230769231,
+            "rotation": 0,
+            "clip": [
+              [
+                0.0,
+                3.6232
+              ],
+              [
+                95.288,
+                0.0
+              ],
+              [
+                100.0,
+                95.8937
+              ],
+              [
+                4.4503,
+                100.0
+              ]
+            ]
+          },
+          {
+            "x": 38.858695652173914,
+            "y": 58.46153846153847,
+            "width": 49.45652173913043,
+            "height": 36.53846153846153,
+            "rotation": 0,
+            "clip": [
+              [
+                5.2198,
+                0.0
+              ],
+              [
+                100.0,
+                4.2105
+              ],
+              [
+                94.5055,
+                100.0
+              ],
+              [
+                0.0,
+                95.7895
+              ]
+            ]
+          }
+        ]
+      },
+      "images": [
+        {
+          "src": "assets/images/photo-01.jpg",
+          "alt": "Kỷ niệm trong lần mình đi chơi cùng nhau",
+          "caption": "Một nơi mình từng ghé",
+          "placeholder": "Ảnh của mình"
+        },
+        {
+          "src": "assets/images/photo-02.jpg",
+          "alt": "Một khoảnh khắc bình thường của hai đứa",
+          "caption": "Một ngày rất bình thường",
+          "placeholder": "Ảnh của mình"
+        }
+      ],
+      "navigation": {
+        "showBack": true,
+        "showNext": true
+      },
+      "animation": {
+        "enter": "paper-in",
+        "duration": 500
+      },
+      "transition": {
+        "type": "page-turn",
+        "duration": 1100,
+        "forward": {
+          "origin": "bottom-right",
+          "direction": "top-left"
+        },
+        "backward": {
+          "origin": "bottom-left",
+          "direction": "top-right"
+        }
+      }
+    },
+    {
+      "id": "memory-02",
+      "type": "gallery",
+      "title": "Sau này mình chụp thêm nhiều tấm nữa nhé",
+      "layout": "photo-template",
+      "template": {
+        "src": "assets/images/photo-frame-mosaic.jpg",
+        "alt": "Trang scrapbook với năm khung ảnh và hoa nhỏ",
+        "width": 736,
+        "height": 1104,
+        "slots": [
+          {
+            "x": 11.548913043478262,
+            "y": 12.409420289855072,
+            "width": 31.11413043478261,
+            "height": 21.920289855072465,
+            "rotation": 0,
+            "clip": [
+              [
+                0.0,
+                10.3306
+              ],
+              [
+                88.6463,
+                0.0
+              ],
+              [
+                100.0,
+                89.2562
+              ],
+              [
+                11.3537,
+                100.0
+              ]
+            ]
+          },
+          {
+            "x": 49.04891304347826,
+            "y": 13.043478260869565,
+            "width": 41.03260869565217,
+            "height": 19.112318840579707,
+            "rotation": 0,
+            "clip": [
+              [
+                0.6623,
+                0.0
+              ],
+              [
+                43.3775,
+                0.0
+              ],
+              [
+                43.3775,
+                7.109
+              ],
+              [
+                48.0132,
+                7.109
+              ],
+              [
+                48.3444,
+                0.4739
+              ],
+              [
+                100.0,
+                0.9479
+              ],
+              [
+                99.0066,
+                100.0
+              ],
+              [
+                0.0,
+                98.5782
+              ]
+            ]
+          },
+          {
+            "x": 42.255434782608695,
+            "y": 41.48550724637681,
+            "width": 26.4945652173913,
+            "height": 23.007246376811594,
+            "rotation": 0,
+            "clip": [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                100.0,
+                0.0
+              ],
+              [
+                100.0,
+                100.0
+              ],
+              [
+                0.0,
+                100.0
+              ]
+            ]
+          },
+          {
+            "x": 9.510869565217392,
+            "y": 65.39855072463769,
+            "width": 43.47826086956522,
+            "height": 20.108695652173914,
+            "rotation": 0,
+            "clip": [
+              [
+                6.25,
+                0.0
+              ],
+              [
+                100.0,
+                13.5135
+              ],
+              [
+                93.4375,
+                100.0
+              ],
+              [
+                0.0,
+                86.9369
+              ]
+            ]
+          },
+          {
+            "x": 57.88043478260869,
+            "y": 69.02173913043478,
+            "width": 29.076086956521742,
+            "height": 18.568840579710145,
+            "rotation": 0,
+            "clip": [
+              [
+                5.6075,
+                0.0
+              ],
+              [
+                100.0,
+                3.9024
+              ],
+              [
+                97.6636,
+                87.3171
+              ],
+              [
+                68.6916,
+                88.2927
+              ],
+              [
+                61.215,
+                100.0
+              ],
+              [
+                0.0,
+                99.5122
+              ]
+            ]
+          }
+        ]
+      },
+      "images": [
+        {
+          "src": "assets/images/photo-03.jpg",
+          "alt": "Một kỷ niệm đáng nhớ của anh và em",
+          "caption": "Có em nên đáng nhớ",
+          "placeholder": "Ảnh 03"
+        },
+        {
+          "src": "assets/images/photo-04.jpg",
+          "alt": "Một bức ảnh nhỏ anh muốn giữ lại",
+          "caption": "Một ngày thật vui",
+          "placeholder": "Ảnh 04"
+        },
+        {
+          "src": "assets/images/photo-05.jpg",
+          "alt": "Một khoảnh khắc dịu dàng của hai đứa",
+          "caption": "Một điều nhỏ bé",
+          "placeholder": "Ảnh 05"
+        },
+        {
+          "src": "assets/images/photo-06.jpg",
+          "alt": "Một lần anh và em ở cạnh nhau",
+          "caption": "Mình ở cạnh nhau",
+          "placeholder": "Ảnh 06"
+        },
+        {
+          "src": "assets/images/photo-07.jpg",
+          "alt": "Một kỷ niệm khác của anh và em",
+          "caption": "Còn nhiều điều phía trước",
+          "placeholder": "Ảnh 07"
+        }
+      ],
+      "navigation": {
+        "showBack": true,
+        "showNext": true
+      },
+      "animation": {
+        "enter": "paper-in",
+        "duration": 500
+      },
+      "transition": {
+        "type": "page-turn",
+        "duration": 1100,
+        "forward": {
+          "origin": "bottom-right",
+          "direction": "top-left"
+        },
+        "backward": {
+          "origin": "bottom-left",
+          "direction": "top-right"
+        }
+      }
+    },
+    {
+      "id": "letter-05",
+      "type": "letter",
+      "title": "Nhìn lại mới thấy anh còn thiếu một điều",
+      "paragraphs": [
+        "Xem lại mấy tấm ảnh này, anh mới thấy hai đứa cũng đã có với nhau khá nhiều kỷ niệm rồi. Chỉ có một chuyện anh vẫn chưa làm cho đàng hoàng. Anh chưa từng thật sự ngỏ lời với em. Cũng chưa chọn một ngày làm ngày kỷ niệm của mình nữa.",
+        "Nên anh làm lá thư này, muốn em bất ngờ một chút. Và muốn hôm nay thành một ngày mà sau này hai đứa sẽ cùng nhớ."
+      ],
+      "decorations": [
+        {
+          "type": "note",
+          "text": "Dành riêng cho em.",
+          "position": "bottom-right",
+          "rotation": -4
+        }
+      ],
+      "navigation": {
+        "showBack": true,
+        "showNext": true
+      },
+      "animation": {
+        "enter": "fade-up",
+        "duration": 450
+      },
+      "transition": {
+        "type": "page-turn",
+        "duration": 1100,
+        "forward": {
+          "origin": "bottom-right",
+          "direction": "top-left"
+        },
+        "backward": {
+          "origin": "bottom-left",
+          "direction": "top-right"
+        }
+      }
+    },
+    {
+      "id": "question",
+      "type": "question",
+      "eyebrow": "VẬY NÊN, HÔM NAY…",
+      "title": "Anh muốn ngỏ lời với em",
+      "paragraphs": [
+        "Anh thích em. Và anh nghiêm túc với những gì đang có giữa hai đứa.",
+        "Anh muốn hôm nay trở thành một ngày đặc biệt hơn một chút. Nếu em cũng muốn như anh, thì từ hôm nay mình sẽ có thêm một ngày để nhớ, một ngày kỷ niệm của riêng hai đứa.",
+        "Và có một câu anh muốn hỏi em cho đàng hoàng:"
+      ],
+      "question": "Em đồng ý làm người yêu anh nhé?",
+      "tease": {
+        "messages": [
+          "Ủa… anh tưởng em sẽ chọn nút bên kia chứ 😳",
+          "Em bấm nhầm đúng không?",
+          "Cho anh hỏi lại một lần nữa nha…",
+          "Anh bắt đầu hơi hồi hộp rồi đó.",
+          "Hay là em đang cố tình trêu anh vậy?",
+          "Anh thấy nút bên kia cũng đẹp mà 😌",
+          "Em suy nghĩ thêm một chút cũng được.",
+          "Anh vẫn đang ngồi đây chờ câu trả lời nè.",
+          "Không sao, anh cho em thêm vài giây suy nghĩ.",
+          "Anh chuẩn bị lá thư này lâu lắm đó nha 🥲",
+          "Thật sự là không luôn hả…?",
+          "Anh hỏi lại cho chắc thôi nhé.",
+          "Có cần anh giả vờ như chưa thấy không?",
+          "Em làm anh hồi hộp hơn lúc viết lá thư này rồi.",
+          "Anh vẫn hy vọng em đổi ý một chút đó.",
+          "Anh không giục đâu… nhưng vẫn đang mong 😌",
+          "Hay mình đọc lại câu hỏi một lần nữa nhé?",
+          "Anh để câu hỏi ở đây, em cứ suy nghĩ từ từ.",
+          "Nếu em chưa muốn trả lời ngay thì cũng không sao.",
+          "Dù câu trả lời thế nào, anh vẫn muốn em biết những điều anh viết là thật."
+        ],
+        "reactions": [
+          "😳",
+          "🥺",
+          "😿",
+          "🙀",
+          "😼",
+          "😶",
+          "🥲",
+          "😵‍💫",
+          "🤨",
+          "😌",
+          "😯",
+          "🥹",
+          "🙈",
+          "😬",
+          "🤏",
+          "😗",
+          "👀",
+          "😅",
+          "🙂",
+          "🫶"
+        ],
+        "finalBehavior": "hold"
+      },
+      "buttons": [
+        {
+          "label": "Đồng ý",
+          "action": "goto",
+          "target": "accepted"
+        },
+        {
+          "label": "Không",
+          "action": "tease",
+          "style": "secondary"
+        }
+      ],
+      "navigation": {
+        "showBack": true,
+        "showNext": false
+      },
+      "animation": {
+        "enter": "fade",
+        "duration": 500
+      },
+      "transition": {
+        "type": "page-turn",
+        "duration": 1100,
+        "forward": {
+          "origin": "bottom-right",
+          "direction": "top-left"
+        },
+        "backward": {
+          "origin": "bottom-left",
+          "direction": "top-right"
+        }
+      }
+    },
+    {
+      "id": "accepted",
+      "type": "result",
+      "title": "Vậy là mình có ngày kỷ niệm rồi nhé",
+      "paragraphs": [
+        "Cuối cùng anh cũng nói được câu mà anh còn thiếu.",
+        "Vậy mình lấy hôm nay làm ngày kỷ niệm nhé. Để sau này, mỗi năm lại có một ngày hai đứa cùng mong chờ. Cảm ơn em vì đã cho anh có cơ hội được ở cạnh em.",
+        "Còn bây giờ… anh vẫn còn giấu em một bất ngờ nhỏ nữa."
+      ],
+      "buttons": [
+        {
+          "label": "Tiếp tục",
+          "action": "goto",
+          "target": "scratch-gift"
+        }
+      ],
+      "decorations": [
+        {
+          "type": "sticker",
+          "src": "assets/stickers/cat.png",
+          "position": "bottom-right",
+          "size": 95,
+          "rotation": 3
+        }
+      ],
+      "navigation": {
+        "showBack": true,
+        "showNext": false
+      },
+      "animation": {
+        "enter": "scale-in",
+        "duration": 450
+      },
+      "transition": {
+        "type": "page-turn",
+        "duration": 1100,
+        "forward": {
+          "origin": "bottom-right",
+          "direction": "top-left"
+        },
+        "backward": {
+          "origin": "bottom-left",
+          "direction": "top-right"
+        }
+      }
+    },
+    {
+      "id": "scratch-gift",
+      "type": "scratch-gift",
+      "eyebrow": "CÒN MỘT BẤT NGỜ NHỎ",
+      "title": "Anh còn chuẩn bị cho em một thứ nữa",
+      "instruction": "Cào nhẹ lớp giấy này xem bên dưới có gì nhé.",
+      "gift": {
+        "src": "assets/images/gift.jpg",
+        "alt": "Món quà anh dành cho em",
+        "fallbackText": "Một bất ngờ nhỏ anh chuẩn bị cho em.",
+        "coverText": "Cào ở đây nha",
+        "revealThreshold": 0.55,
+        "title": "Một món quà nhỏ dành cho em",
+        "promise": "Hy vọng em sẽ thích món quà này.",
+        "stampText": "Đã thuộc về em",
+        "progressMessages": [
+          "Sắp thấy rồi…",
+          "Thêm một chút nữa…",
+          "Gần mở được quà rồi!"
+        ],
+        "showDetails": false
+      },
+      "revealText": "Em thích món quà này chứ? Còn một thứ cuối cùng nữa thôi… Một bài hát anh muốn nghe cùng em.",
+      "buttons": [
+        {
+          "label": "Nghe nhé",
+          "action": "goto",
+          "target": "music",
+          "showAfterReveal": true
+        }
+      ],
+      "navigation": {
+        "showBack": true,
+        "showNext": false
+      },
+      "animation": {
+        "enter": "paper-in",
+        "duration": 500
+      },
+      "transition": {
+        "type": "page-turn",
+        "duration": 1100,
+        "forward": {
+          "origin": "bottom-right",
+          "direction": "top-left"
+        },
+        "backward": {
+          "origin": "bottom-left",
+          "direction": "top-right"
+        }
+      }
+    },
+    {
+      "id": "music",
+      "type": "music",
+      "title": "Mình còn nhiều điều phía trước",
+      "src": "assets/audio/song.mp3",
+      "endingSignature": "- Love you <3 -",
+      "navigation": {
+        "showBack": true,
+        "showNext": false
+      },
+      "animation": {
+        "enter": "fade-up",
+        "duration": 450
+      },
+      "transition": {
+        "type": "page-turn",
+        "duration": 1100,
+        "forward": {
+          "origin": "bottom-right",
+          "direction": "top-left"
+        },
+        "backward": {
+          "origin": "bottom-left",
+          "direction": "top-right"
+        }
+      },
+      "layout": "ending-player",
+      "paragraphs": [
+        "Lá thư đến đây là hết rồi, còn chuyện của hai đứa thì mình từ từ viết tiếp nhé."
+      ],
+      "playerLabel": "Một bài hát anh muốn nghe cùng em",
+      "autoplay": true,
+      "loop": true
+    }
+  ]
+}
