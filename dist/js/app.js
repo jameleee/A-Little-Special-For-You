@@ -677,6 +677,10 @@
     audio.loop = s.loop === true;
     let disposed = false;
     const status = el('p', 'audio-status', ui('audioLoading')); status.setAttribute('role', 'status');
+    const setAudioStatus = key => {
+      status.hidden = key === 'audioReady' && !!s.playerLabel;
+      status.textContent = status.hidden ? '' : ui(key);
+    };
     const control = el('button', 'audio-toggle', ui('play')); control.type = 'button'; control.disabled = true;
     const seek = el('input', 'audio-seek');
     seek.type = 'range'; seek.min = '0'; seek.max = '100'; seek.value = '0'; seek.step = '.1';
@@ -686,9 +690,9 @@
     const format = seconds => Number.isFinite(seconds) ? Math.floor(seconds / 60) + ':' + String(Math.floor(seconds % 60)).padStart(2, '0') : '0:00';
     const ready = () => {
       if (!Number.isFinite(audio.duration) || audio.duration <= 0) return;
-      control.disabled = false; seek.disabled = false; duration.textContent = format(audio.duration); status.textContent = ui('audioReady');
+      control.disabled = false; seek.disabled = false; duration.textContent = format(audio.duration); setAudioStatus('audioReady');
     };
-    const unavailable = () => { control.disabled = true; seek.disabled = true; control.textContent = ui('play'); status.textContent = ui('audioUnavailable'); };
+    const unavailable = () => { control.disabled = true; seek.disabled = true; control.textContent = ui('play'); setAudioStatus('audioUnavailable'); };
     audio.addEventListener('loadedmetadata', ready); audio.addEventListener('canplay', ready); audio.addEventListener('error', unavailable);
     audio.addEventListener('timeupdate', () => {
       elapsed.textContent = format(audio.currentTime); seek.value = audio.duration ? String(audio.currentTime / audio.duration * 100) : '0';
@@ -716,12 +720,12 @@
         audio.volume = reducedMotion.matches ? 1 : 0;
         await audio.play();
         if (disposed) { audio.pause(); return; }
-        fadeIn(); status.textContent = ui('audioReady');
+        fadeIn(); setAudioStatus('audioReady');
       } catch {
         if (disposed) return;
         audio.volume = 1;
         if (audio.error) unavailable();
-        else status.textContent = ui('audioPlayError');
+        else setAudioStatus('audioPlayError');
       }
     };
     control.addEventListener('click', () => {
@@ -738,7 +742,7 @@
     if (data.settings.musicEnabled) {
       audio.src = s.src;
       if (s.autoplay) startPlayback();
-    } else status.textContent = ui('audioDisabled');
+    } else setAudioStatus('audioDisabled');
     return () => { disposed = true; cancelFade(); audio.pause(); audio.removeAttribute('src'); audio.load(); };
   }
   const renderers = {
