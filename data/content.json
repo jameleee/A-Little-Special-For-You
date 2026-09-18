@@ -352,13 +352,13 @@
       },
       "images": [
         {
-          "src": "assets/images/photo-01.jpg",
+          "src": "assets/images/photo-01.webp",
           "alt": "Kỷ niệm trong lần mình đi chơi cùng nhau",
           "caption": "Một nơi mình từng ghé",
           "placeholder": "Ảnh của mình"
         },
         {
-          "src": "assets/images/photo-02.jpg",
+          "src": "assets/images/photo-02.webp",
           "alt": "Một khoảnh khắc bình thường của hai đứa",
           "caption": "Một ngày rất bình thường",
           "placeholder": "Ảnh của mình"
@@ -549,31 +549,31 @@
       },
       "images": [
         {
-          "src": "assets/images/photo-03.jpg",
+          "src": "assets/images/photo-03.webp",
           "alt": "Một kỷ niệm đáng nhớ của anh và em",
           "caption": "Có em nên đáng nhớ",
           "placeholder": "Ảnh 03"
         },
         {
-          "src": "assets/images/photo-04.jpg",
+          "src": "assets/images/photo-04.webp",
           "alt": "Một bức ảnh nhỏ anh muốn giữ lại",
           "caption": "Một ngày thật vui",
           "placeholder": "Ảnh 04"
         },
         {
-          "src": "assets/images/photo-05.jpg",
+          "src": "assets/images/photo-05.webp",
           "alt": "Một khoảnh khắc dịu dàng của hai đứa",
           "caption": "Một điều nhỏ bé",
           "placeholder": "Ảnh 05"
         },
         {
-          "src": "assets/images/photo-06.jpg",
+          "src": "assets/images/photo-06.webp",
           "alt": "Một lần anh và em ở cạnh nhau",
           "caption": "Mình ở cạnh nhau",
           "placeholder": "Ảnh 06"
         },
         {
-          "src": "assets/images/photo-07.jpg",
+          "src": "assets/images/photo-07.webp",
           "alt": "Một kỷ niệm khác của anh và em",
           "caption": "Còn nhiều điều phía trước",
           "placeholder": "Ảnh 07"
@@ -796,10 +796,10 @@
         ],
         "showDetails": false
       },
-      "revealText": "Em thích món quà này chứ? Còn một thứ cuối cùng nữa thôi… Một bài hát anh muốn nghe cùng em.",
+      "revealText": "Em thích món quà này chứ? Anh còn một điều cuối cùng muốn nói với em.",
       "buttons": [
         {
-          "label": "Nghe nhé",
+          "label": "Tiếp nhé",
           "action": "goto",
           "target": "music",
           "showAfterReveal": true
@@ -829,7 +829,7 @@
     {
       "id": "music",
       "type": "music",
-      "title": "Mình còn nhiều chuyện để cùng nhau trải qua",
+      "title": "Còn nhiều điều phía trước",
       "src": "assets/audio/song.mp3",
       "endingSignature": "- Love you <3 -",
       "navigation": {
@@ -852,9 +852,11 @@
           "direction": "top-right"
         }
       },
-      "layout": "ending-player",
+      "layout": "ending-background",
       "paragraphs": [
-        "Lá thư đến đây là hết rồi, còn chuyện của hai đứa thì mình từ từ cùng nhau viết tiếp nhé."
+        "Lá thư đến đây là hết rồi.",
+        "Còn chuyện của hai đứa thì mình cứ từ từ cùng nhau viết tiếp nhé.",
+        "Hy vọng sau này mình sẽ có thêm thật nhiều chuyện để nhớ về nhau như hôm nay."
       ],
       "playerLabel": "Một bài hát anh muốn nghe cùng em",
       "autoplay": true,

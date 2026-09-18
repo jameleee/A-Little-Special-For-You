@@ -16,6 +16,30 @@
   const relativePath = value => isText(value) && !/^(?:[a-z]+:|\/|\\)/i.test(value) && !value.split('/').includes('..');
   const log = (...args) => { if (data?.settings?.debug) console.info('[card]', ...args); };
   const ui = key => data.ui[key];
+  // Retain decoded gallery assets so entering a page does not decode full photos mid-turn.
+  const galleryAssets = new Map();
+  async function warmGalleryAssets() {
+    const sources = new Set(data.screens.filter(s => s.type === 'gallery').flatMap(s =>
+      [s.template?.src, ...s.images.map(image => image.src)].filter(Boolean)));
+    for (const src of sources) {
+      if (galleryAssets.has(src)) continue;
+      const image = new Image();
+      image.decoding = 'async'; image.fetchPriority = 'low';
+      galleryAssets.set(src, image);
+      image.src = src;
+      try { await image.decode(); } catch { galleryAssets.delete(src); }
+    }
+  }
+  function galleryPhoto(item, fallback) {
+    const image = el('img');
+    image.alt = item.alt; image.loading = 'eager'; image.decoding = 'async';
+    const reveal = () => { fallback.hidden = true; image.classList.add('loaded'); };
+    image.addEventListener('load', reveal, {once: true});
+    image.addEventListener('error', () => { image.remove(); fallback.hidden = false; }, {once: true});
+    image.src = item.src;
+    if (image.complete && image.naturalWidth) reveal();
+    return image;
+  }
 
   function celebrate() {
     const layer = el('div', 'celebration' + (reducedMotion.matches ? ' reduced' : ''));
@@ -483,10 +507,8 @@
         slot.style.setProperty('--slot-rotation', (slotData.rotation || 0) + 'deg');
         if (slotData.clip) slot.style.clipPath = 'polygon(' + slotData.clip.map(([x,y]) => x + '% ' + y + '%').join(',') + ')';
         const fallback = el('span', 'template-photo-fallback', item.placeholder || ui('imageFallback'));
-        const image = el('img'); image.alt = item.alt; image.loading = 'lazy'; image.decoding = 'async';
-        image.addEventListener('load', () => { fallback.hidden = true; image.classList.add('loaded'); });
-        image.addEventListener('error', () => { image.remove(); fallback.hidden = false; }, {once: true});
-        image.src = item.src; slot.append(fallback, image);
+        const image = galleryPhoto(item, fallback);
+        slot.append(fallback, image);
         if (item.caption) slot.append(el('figcaption', 'sr-only', item.caption));
         template.append(slot);
       });
@@ -500,10 +522,8 @@
       frame.style.setProperty('--photo-rotation', (item.rotation ?? (i % 2 ? 5 : -5)) + 'deg');
       const slot = el('div', 'photo-slot');
       const fallback = el('div', 'photo-fallback', item.placeholder || ui('imageFallback'));
-      const image = el('img'); image.alt = item.alt; image.loading = 'lazy'; image.decoding = 'async';
-      image.addEventListener('load', () => { fallback.hidden = true; image.classList.add('loaded'); });
-      image.addEventListener('error', () => { image.remove(); fallback.hidden = false; }, {once: true});
-      image.src = item.src; slot.append(fallback, image); frame.append(slot);
+      const image = galleryPhoto(item, fallback);
+      slot.append(fallback, image); frame.append(slot);
       if (item.caption || item.date) {
         const caption = el('figcaption');
         if (item.caption) caption.append(el('span', '', item.caption));
@@ -667,7 +687,7 @@
   }
   function renderMusic(s, stage) {
     const node = paper(s), player = el('div', 'player'), audio = el('audio');
-    if (s.layout === 'ending-player') {
+    if (s.layout === 'ending-player' || s.layout === 'ending-background') {
       node.classList.add('ending-paper');
       const heart = el('span', 'ending-heart', '♡'); heart.setAttribute('aria-hidden', 'true');
       node.prepend(heart);
@@ -733,7 +753,13 @@
       startPlayback();
     });
     seek.addEventListener('input', () => { if (Number.isFinite(audio.duration)) audio.currentTime = Number(seek.value) / 100 * audio.duration; });
-    player.append(status, control, seek, times, audio); node.append(player);
+    if (s.layout === 'ending-background') {
+      const sound = el('div', 'ending-sound');
+      sound.append(control);
+      node.append(audio, sound);
+    } else {
+      player.append(status, control, seek, times, audio); node.append(player);
+    }
     if (s.endingParagraphs) s.endingParagraphs.forEach(text => node.append(el('p', 'music-ending', text)));
     if (s.endingSignature) node.append(el('p', 'signature', s.endingSignature));
     stage.append(node);
@@ -933,6 +959,8 @@
       });
       if (data.settings.title) document.title = data.settings.title;
       show(data.screens.findIndex(s => s.id === data.settings.startScreen));
+      if ('requestIdleCallback' in window) requestIdleCallback(warmGalleryAssets, {timeout: 1500});
+      else setTimeout(warmGalleryAssets, 800);
     } catch (error) {
       const card = el('section', 'error-card'); card.setAttribute('role', 'alert');
       card.append(el('h1', '', data?.ui?.errorTitle || 'Lá thư chưa mở được'), el('p', '', data?.ui?.errorBody || 'Em thử tải lại trang nhé. Nếu vẫn chưa được, anh sẽ kiểm tra lại lá thư.'));
