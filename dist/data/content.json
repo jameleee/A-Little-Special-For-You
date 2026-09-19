@@ -796,7 +796,7 @@
         ],
         "showDetails": false
       },
-      "revealText": "Em thích món quà này chứ? Anh còn một chút muốn nói với em nữa.",
+      "revealText": "Em thích món quà này chứ? Anh còn một điều cuối cùng muốn nói với em.",
       "buttons": [
         {
           "label": "Tiếp nhé",
@@ -829,7 +829,7 @@
     {
       "id": "music",
       "type": "music",
-      "title": "Còn nhiều điều phía trước",
+      "title": "Lá thư đến đây là hết rồi.",
       "src": "assets/audio/song.mp3",
       "endingSignature": "- Love you <3 -",
       "navigation": {
@@ -854,7 +854,6 @@
       },
       "layout": "ending-background",
       "paragraphs": [
-        "Lá thư đến đây là hết rồi.",
         "Còn chuyện của hai đứa thì mình cứ từ từ cùng nhau viết tiếp nhé.",
         "Hy vọng sau này mình sẽ có thêm thật nhiều chuyện để nhớ về nhau như hôm nay."
       ],
